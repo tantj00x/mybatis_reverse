@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!-- 去掉生成文件中的注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库链接URL、用户名、密码 -->
+        <!-- 注意xml中不支持&，用&amp;代替 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/mybatis?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai&amp;allowPublicKeyRetrieval=true"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+        <!--
+            <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+                    connectionURL="jdbc:oracle:thin:@localhost:1521:XE"
+                    userId="car"
+                    password="car">
+            </jdbcConnection>
+        -->
+
+        <!--处理NUMERIC和DECIMAL类型的策略-->
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和  NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 生成POJO的包名和位置 -->
+        <javaModelGenerator targetPackage="com.example.pojo" targetProject="./src/main/java">
+            <!-- 是否在当前路径下新加一层schema,eg：【fase路径：com.oop.eksp.user.model】 【true:com.oop.eksp.user.model.[schemaName]】 -->
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 生成的sql映射文件包名和位置 -->
+        <sqlMapGenerator targetPackage="com.example.mapper" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <!--<property name="trimStrings" value="true" />-->
+        </sqlMapGenerator>
+
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.mapper" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <!--<property name="trimStrings" value="true" />-->
+        </javaClientGenerator>
+
+        <!-- 指定逆向依据的数据表 -->
+        <!--<table tableName="t_basicData" domainObjectName="BasicData"/>
+        <table tableName="t_customer" domainObjectName="Customer"/>
+        <table tableName="t_menu" domainObjectName="Menu"/>
+        <table tableName="t_order" domainObjectName="Order"/>
+        <table tableName="t_order_detail" domainObjectName="OrderDetail"/>
+        <table tableName="t_role" domainObjectName="Role"/>-->
+        <table tableName="dept" domainObjectName="Dept"/>
+        <table tableName="emp" domainObjectName="Emp"/>
+        <table tableName="project" domainObjectName="Project"/>
+        <table tableName="projectrecord" domainObjectName="ProjectRecord"/>
+    </context>
+</generatorConfiguration>
